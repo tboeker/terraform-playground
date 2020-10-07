@@ -1,3 +1,6 @@
+# case1: complex type as variable
+# https://www.terraform.io/docs/configuration/types.html#complex-types
+
 variable "my_settings" {
   type = object({
     string1 = string

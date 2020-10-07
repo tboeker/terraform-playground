@@ -1,4 +1,4 @@
-# Object type Variable with default
+# case2: complex type as variable with default and optional attributes
 # https://binx.io/blog/2020/01/02/module-parameter-defaults-with-the-terraform-object-type/
 
 variable "my_settings_defaults" {
@@ -24,16 +24,11 @@ locals {
 }
 
 output "out1" {
-  value       = "output1"
-  description = "static value"
-}
-
-output "out2" {
   value       = local.merged_my_settings
   description = "complex type"
 }
 
-output "out3" {
+output "out2" {
   value       = local.merged_my_settings.string1
   description = "static value of complex type"
 }
