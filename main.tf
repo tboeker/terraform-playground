@@ -25,3 +25,26 @@ module "c2" {
 output "c2_1" {
   value = module.c2.out2
 }
+
+
+#######################################
+
+# case 3: 
+module "c3" {
+  source      = "./modules/case3"  
+  ServiceConnections  = {
+      "con1" = {
+        Prefix    = "prefix 1"
+        Postfix   = "postfix 1"
+      }
+      "con2" = {
+        Prefix    = "prefix 2"
+        Postfix   = "postfix 2"
+      }
+  }
+ 
+}
+
+output "c3_1" {
+  value = module.c3.out2
+}
