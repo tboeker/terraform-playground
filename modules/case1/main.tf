@@ -1,5 +1,3 @@
-# Object type Variable
-
 variable "my_settings" {
   type = object({
     string1 = string
@@ -18,15 +16,15 @@ variable "my_settings" {
 
 output "out1" {
   value       = "output1"
-  description = "static value"
+  description = "Primitive Type Value"
 }
 
 output "out2" {
   value       = var.my_settings
-  description = "complex type"
+  description = "Complex Type"
 }
 
 output "out3" {
   value       = var.my_settings.string1
-  description = "static value of complex type"
+  description = "Attribute of Complex Type"
 }
