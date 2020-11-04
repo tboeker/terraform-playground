@@ -6,8 +6,13 @@ Terraform Playground
 
 ```
 terraform init
+
 terraform plan
 terraform apply -auto-approve
+
+terraform plan -out out.terraform
+terraform apply out.terraform
+
 ```
 
 # links

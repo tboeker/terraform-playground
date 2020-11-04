@@ -12,7 +12,8 @@ variable "aad_users" {
   type        = list(string)
   default     = [
       "tb@softwarepioniere.de",
-      "mvd@softwarepioniere.de"
+      "mvd@softwarepioniere.de",
+      "mkb@softwarepioniere.de"
   ]
 }
 
@@ -24,33 +25,9 @@ output "p_id" {
   value = data.azuredevops_project.p.id
 }
 
-data "azuredevops_users" "aad" {
-  for_each  = toset(var.aad_users)
-  principal_name = each.value
-}
-
-# output "users_raw" {
-#   value = data.azuredevops_users.aad
-# }
-
-output "users_descriptors" {
-  value = flatten(values(data.azuredevops_users.aad)[*].users[*].descriptor)
-}
-
-data "azuredevops_group" "group" {
-  project_id = data.azuredevops_project.p.id
-  name       = "Build Administrators"
-}
-
-output "group_id" {
-  value = data.azuredevops_group.group.id
-}
-
-output "group_descriptor" {
-  value = data.azuredevops_group.group.descriptor
-}
-
-resource "azuredevops_group_membership" "membership" {
-  group = data.azuredevops_group.group.descriptor
-  members = flatten(values(data.azuredevops_users.aad)[*].users[*].descriptor)
+module "aad_user_membership" {
+  source      = "./modules/aad-users-group-membership"
+  project_id  = data.azuredevops_project.p.id
+  aad_users   = var.aad_users
+  group_name  = "Build Administrators"
 }
