@@ -18,7 +18,35 @@ output "p_id" {
 module "aad_user_membership" {
   source      = "./modules/aad-users-group-membership"
   project_id  = data.azuredevops_project.p.id
-  aad_users   = = [
+  aad_users   = [
+      "tb@softwarepioniere.de",
+      "mvd@softwarepioniere.de",
+      "mkb@softwarepioniere.de"
+  ]
+  group_name  = "Build Administrators"
+}
+
+module "aad_user_membership2" {
+  source      = "./modules/aad-users-group-membership-2"
+  project_id  = data.azuredevops_project.p.id
+  memberships = {
+     "Build Administrators" = [
+        "tb@softwarepioniere.de",
+        "mvd@softwarepioniere.de",
+        "mkb@softwarepioniere.de"
+      ],
+      "Endpoint Administrators" = [
+        "tb@softwarepioniere.de",
+        "mvd@softwarepioniere.de",
+        "mkb@softwarepioniere.de"
+      ]
+  }
+}
+
+module "aad_group_membership" {
+  source      = "./modules/aad-group-group-membership"
+  project_id  = data.azuredevops_project.p.id
+  aad_users   = [
       "tb@softwarepioniere.de",
       "mvd@softwarepioniere.de",
       "mkb@softwarepioniere.de"
