@@ -5,3 +5,4 @@
 *.txt
 .tfvars
 secret-*.*
+*.lock.hcl

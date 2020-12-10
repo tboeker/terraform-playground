@@ -1,3 +1,7 @@
+
+
+#######################################
+
 # case1: complex type as variable
 module "c1" {
   source      = "./modules/case1"
@@ -144,5 +148,36 @@ output "c5_5" {
   value = module.c5.out5
 }
 
+# output "c5_6" {
+#   value = module.c5.out6
+# }
+
+# output "c5_7" {
+#   value = module.c5.out7
+# }
+
+output "c5_X" {
+  value = module.c5.out3["con1"]
+}
 
 
+############################
+
+variable "c0_vars" {
+     type      = set(string)
+     default = [
+          "k1",
+          "k2",
+          "k3"
+     ]
+}
+
+module "c0" {
+  source      = "./modules/case0"
+  for_each    = var.c0_vars
+  var1        = each.value
+}
+
+output "c0_1" {
+  value = module.c0["k1"].out1
+}

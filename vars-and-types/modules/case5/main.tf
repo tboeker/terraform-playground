@@ -72,3 +72,11 @@ output "out4" {
 output "out5" {
   value       = local.merged_my_settings.ServiceConnections[local.merged_my_settings.DefaultConnection]
 }
+
+# output "out6" {
+#   value       = local_file.f1[0].filename
+# }
+
+# output "out7" {
+#   value       = local_file.f1
+# }
