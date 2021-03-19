@@ -6,3 +6,4 @@
 .tfvars
 secret-*.*
 *.lock.hcl
+.vs
